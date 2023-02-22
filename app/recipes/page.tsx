@@ -15,12 +15,30 @@ type Recipe = {
 export default function Recipes() {
 
   const [recipes, setRecipes] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
-    axios.get('api/GetRecipes')
-      .then(res => setRecipes(res.data))
-      .catch(err => console.log(err));
+    console.log('izpildas useffect')
+    axios.get('../api/GetRecipes')
+      .then(res => {
+        setRecipes(res.data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.log(err);
+        setError(true);
+        setLoading(false);
+      });
   }, [])
+
+  if (loading) {
+    return <p>Loading...</p>
+  }
+
+  // if (error) {
+  //   return <p>Error loading data.</p>
+  // }
 
   return (
 

@@ -23,27 +23,35 @@ export default function CharById({ params }: CharByIdParams) {
 
   const [recipe, setRecipe] = useState<Recipe>()
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
+    console.log('rendere pec id')
     axios.get(`../api/${id}`)
       .then(res => {
         setRecipe(res.data[0]);
         setLoading(false);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        setError(true);
+        setLoading(false);
+        console.log(err);
+      })
   }, [id])
 
   return (
     <>
       {loading ?
-        (<h2>Loading...</h2>) :
-        recipe && (
-          <div style={{ border: '1px solid black' }} key={recipe._id}>
-            <Image src={recipe.imgLink} alt={recipe.name} width={600} height={350} />
-            <h2>{recipe.name}</h2>
-            <p>{recipe.content}</p>
-          </div>
-        )}
+        (<p>Loading...</p>) :
+        error ?
+          (<p>No data found.</p>) :
+          recipe && (
+            <div style={{ border: '1px solid black' }} key={recipe._id}>
+              <Image src={recipe.imgLink} alt={recipe.name} width={600} height={350} />
+              <h2>{recipe.name}</h2>
+              <p>{recipe.content}</p>
+            </div>
+          )}
     </>
   );
 }

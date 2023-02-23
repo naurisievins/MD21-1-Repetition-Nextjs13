@@ -3,6 +3,7 @@
 import Image from "next/image";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import '../../styles.css'
 
 type CharByIdParams = {
   params: {
@@ -26,7 +27,6 @@ export default function CharById({ params }: CharByIdParams) {
   const [error, setError] = useState(false)
 
   useEffect(() => {
-    console.log('rendere pec id')
     axios.get(`../api/${id}`)
       .then(res => {
         setRecipe(res.data[0]);
@@ -45,13 +45,17 @@ export default function CharById({ params }: CharByIdParams) {
         (<p>Loading...</p>) :
         error ?
           (<p>No data found.</p>) :
+
           recipe && (
-            <div style={{ border: '1px solid black' }} key={recipe._id}>
-              <Image src={recipe.imgLink} alt={recipe.name} width={600} height={350} />
-              <h2>{recipe.name}</h2>
-              <p>{recipe.content}</p>
+            <div className='container'>
+              <div className='recipe-full'>
+                <Image src={recipe.imgLink} alt={recipe.name} width={600} height={350} />
+                <span className='recipe__name'>{recipe.name}</span>
+                <pre className='recipe__content'>{recipe.content}</pre>
+              </div>
             </div>
           )}
+
     </>
   );
 }

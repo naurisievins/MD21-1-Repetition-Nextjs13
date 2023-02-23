@@ -18,9 +18,6 @@ export default function RootLayout({
             <Link href="/recipes">
               Recipes
             </Link>
-            <Link href="/test">
-              Test
-            </Link>
           </nav>
           {children}
         </main>

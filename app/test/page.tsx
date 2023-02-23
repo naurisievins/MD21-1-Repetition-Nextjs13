@@ -38,19 +38,3 @@ export default function YourPage() {
 }
 
 
-//   fetch('api/postRecipe', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify({ a: 1, b: 2 })
-//   })
-//     .then(res => res.json())
-//     .then(data => {
-//       console.log(data);
-//       // handle the response data here
-//     })
-//     .catch(error => console.error(error));
-// };
-
-

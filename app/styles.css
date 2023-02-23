@@ -8,7 +8,7 @@
 .container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
   max-width: 100%;
   gap: 20px;
   padding: 10px;
@@ -40,19 +40,27 @@
 .recipe__content {
   display: flex;
   max-width: 100%;
-  padding: 20px;
+  padding: 10px;
   align-self: start;
   white-space: pre-wrap;
+  margin: 0;
 }
 
 .recipe__image {
   position: center;
+  max-width: 600px;
+}
+
+.recipe__image > img {
+  margin: 0 auto;
+  width: 100%;
 }
 
 .title {
   margin: 0;
   font-size: 3rem;
-  color: rgb(146, 145, 142);
+  color: rgb(204, 203, 198);
+  text-align: center;
 }
 
 .recipe-full {
@@ -68,4 +76,45 @@
   max-width: 800px;
   border: 1px solid rgb(180, 196, 173);
   border-radius: 10px;
+}
+
+.container--home {
+  background-image: url(https://img.freepik.com/premium-photo/open-blank-recipe-book-brown-wooden-background-with-tomatoes-garlic-green-onion_489646-1167.jpg?w=1380);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color:rgb(204, 203, 198);
+  color: rgb(41, 42, 43);
+  height: 75vh;
+  width: 90%;
+  border-radius: 7px;
+  position: relative;
+}
+
+.content {
+  position: absolute;
+  bottom: 20vh;
+  left: 15vw;
+  width: 200px;
+  color: rgb(41, 42, 43);
+  font-weight: 600;
+}
+
+@media only screen and (max-width: 600px) {
+  nav {
+    text-align: center;
+  }
+
+  body, html {
+    padding: 0;
+    margin: 0;
+  }
+
+  .wrapper {
+    padding: 0;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
 }

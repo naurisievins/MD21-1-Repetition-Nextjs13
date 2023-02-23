@@ -1,11 +1,9 @@
 'use client'
 
 import React from 'react'
-import { useState } from 'react';
 import axios from 'axios';
 
 export default function YourPage() {
-  const [formData, setFormData] = useState([]);
 
   const handlePost = () => {
     axios.post('api/PostRecipe', {})
@@ -30,7 +28,6 @@ export default function YourPage() {
   return (
     <>
       <button onClick={handlePost}>Post</button>
-
       <button onClick={handleGet}>Get</button>
     </>
 

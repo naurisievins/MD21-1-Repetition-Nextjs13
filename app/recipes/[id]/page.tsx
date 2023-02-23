@@ -49,7 +49,9 @@ export default function CharById({ params }: CharByIdParams) {
           recipe && (
             <div className='container'>
               <div className='recipe-full'>
-                <Image src={recipe.imgLink} alt={recipe.name} width={600} height={350} />
+                <div className='recipe__image'>
+                  <img src={recipe.imgLink} alt={recipe.name} />
+                </div>
                 <span className='recipe__name'>{recipe.name}</span>
                 <pre className='recipe__content'>{recipe.content}</pre>
               </div>

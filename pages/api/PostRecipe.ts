@@ -12,8 +12,8 @@ export default async function PostRecipe(
 
       const recipe = new Recipe({
         name: "Kartupelis",
-        imgLink: "https://",
-        content: "fsafaf",
+        imgLink: "/",
+        content: "kartupelis?",
         date: new Date(),
       });
 

@@ -33,8 +33,7 @@ export default function Recipes() {
   }, [])
 
   if (loading) {
-    return <p>Error loading data.</p>
-
+    return <p>Loading...</p>
   }
 
   if (error) {

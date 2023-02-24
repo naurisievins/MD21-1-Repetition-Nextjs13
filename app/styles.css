@@ -118,3 +118,9 @@
     font-size: 1.5rem;
   }
 }
+
+.loading-error {
+  font-size: 3rem;
+  color: white;
+  margin: 0 auto;
+}

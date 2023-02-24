@@ -15,6 +15,7 @@ export default async function PostRecipe(
         imgLink: "/",
         content: "kartupelis?",
         date: new Date(),
+        category: "desert",
       });
 
       await recipe.save();

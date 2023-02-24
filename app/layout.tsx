@@ -12,12 +12,10 @@ export default function RootLayout({
       <body>
         <main>
           <nav>
-            <Link href="/">
-              Home
-            </Link>
-            <Link href="/recipes">
-              Recipes
-            </Link>
+            <label>
+              <span>Meklēt recepti:</span>
+              <input type='text'></input>
+            </label>
           </nav>
           {children}
         </main>

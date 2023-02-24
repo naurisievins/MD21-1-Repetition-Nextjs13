@@ -1,9 +1,9 @@
 import connectMongo from "../../utils/mongoConnect";
 import Recipe from "../../models/Recipe";
 import { NextApiRequest, NextApiResponse } from "next";
-import { Recipe as RecipeType } from "../../types/types";
+import { Recipe as RecipeType } from "types/types";
 
-export default async function GetRecipes(
+export default async function GetCategories(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -11,7 +11,10 @@ export default async function GetRecipes(
     try {
       await connectMongo();
 
-      const result = await Recipe.find<RecipeType[]>();
+      const result = await Recipe.find<RecipeType[]>(
+        {},
+        { name: 0, _id: 0, imgLink: 0, content: 0, date: 0 }
+      );
 
       res.status(200).json(result);
     } catch (error) {

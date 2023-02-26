@@ -18,7 +18,7 @@ export default function Main() {
   const [categories, setCategories] = useState<string[]>([])
   const [recipeSearchParams, setRecipeSearchParams] = useState(recipeSearchParamsInit)
   const [showAddForm, setShowAddForm] = useState(false)
-  // const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     getCategories().then((categories) => {
@@ -33,12 +33,13 @@ export default function Main() {
         console.log(err);
       });
 
-    // setLoading(false)
+    setLoading(false)
+
   }, [recipeSearchParams])
 
-  // if (loading) {
-  //   return <p>Loading...</p>
-  // }
+  if (loading) {
+    return <p>Loading...</p>
+  }
 
   return (
     <div className={styles.wrapper}>

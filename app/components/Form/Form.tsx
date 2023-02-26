@@ -24,12 +24,8 @@ export default function Form(
 
   const handleSubmit = (formValues: Recipe) => {
     axios.post('api/PostRecipe', { formValues })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
 
     setRecipe && setRecipe({
       ...recipe,
@@ -79,7 +75,6 @@ export default function Form(
               value={formValues.category}
               className={styles.form_select}
               onChange={(e) => {
-                console.log(formValues.category)
                 setFormValues({ ...formValues, category: e.target.value })
               }}
               required

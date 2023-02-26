@@ -11,6 +11,7 @@ import Recipes from './components/Recipes/Recipes'
 import styles from './page.module.scss'
 import Form from './components/Form/Form'
 import { recipeInit, recipeSearchParamsInit } from 'utils/initValues'
+import connectMongo from '../utils/mongoConnect'
 
 export default function Main() {
 
@@ -20,19 +21,26 @@ export default function Main() {
   const [showAddForm, setShowAddForm] = useState(false)
   const [loading, setLoading] = useState(true)
 
+
+
   useEffect(() => {
+    connectMongo();
+
     getCategories().then((categories) => {
       categories && setCategories(categories)
     })
 
     axios.get('../api/GetRecipes', { params: recipeSearchParams })
       .then(res => {
+        console.log('axios get pie useeffect', res.data)
         setRecipes(res.data);
       })
       .catch(err => {
         console.log(err);
       });
 
+
+    setRecipeSearchParams(recipeSearchParamsInit)
     setLoading(false)
 
   }, [recipeSearchParams])
@@ -43,7 +51,7 @@ export default function Main() {
 
   return (
     <div className={styles.wrapper}>
-      <h2 className={styles.title}>Lieliskas receptes</h2>
+
       <div className={styles.top_option_bar}>
         <Search setRecipeSearchParams={setRecipeSearchParams} />
         <button className={styles.add_recipe_btn}
@@ -52,6 +60,7 @@ export default function Main() {
           {showAddForm ? 'Aizvērt formu' : 'Pievienot recepti'}
         </button>
       </div>
+      <h2 className={styles.title}>Lieliskas receptes</h2>
       <div className={styles.filter_container}>
         {!showAddForm && <Filter categories={categories} setRecipeSearchParams={setRecipeSearchParams} />}
       </div>
@@ -65,7 +74,7 @@ export default function Main() {
           />
           :
           (<>
-            {recipes.length === 0 && (<p>Nekas netika atrasts!</p>)}
+            {/* {recipes.length === 0 && (<p>Nekas netika atrasts!</p>)} */}
             <Recipes recipes={recipes} />
           </>)
         }

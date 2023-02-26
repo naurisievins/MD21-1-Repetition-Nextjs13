@@ -24,10 +24,6 @@ export default function CharById({ params }: CharByIdParams) {
       })
   }, [id, recipe])
 
-  if (!recipe) {
-    return <p>Nekas netika atrasts!</p>
-  }
-
   return (
     <div className={styles.container}>
       {recipe && (

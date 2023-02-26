@@ -22,14 +22,6 @@ export default async function PostRecipe(
         await Recipe.findOneAndUpdate({ _id: id }, recipeForm);
       }
 
-      // const recipe = new Recipe({
-      //   name: "Kartupelis",
-      //   imgLink: "/",
-      //   content: "kartupelis?",
-      //   date: new Date(),
-      //   category: "desert",
-      // });
-
       res.status(200).json({ message: "Recipe added successfully" });
     } catch (error) {
       console.error(error);

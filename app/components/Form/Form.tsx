@@ -1,11 +1,12 @@
+'use client'
+
 import styles from './Form.module.scss'
 import { useState } from 'react'
 import { Recipe } from 'types/types'
 import axios from 'axios'
 import { FormProps } from 'types/types'
-import { recipeInit } from 'app/page'
-import { recipeSearchParamsInit } from 'app/page'
 import { v4 as uuid } from 'uuid'
+import { recipeInit, recipeSearchParamsInit } from 'utils/initValues'
 
 export default function Form(
   {
@@ -74,10 +75,16 @@ export default function Form(
             }
           </span>
           {(categories && categories.length > 1 && !showCategoryInput) ?
-            (<select className={styles.form_select}
+            (<select
+              value={formValues.category}
+              className={styles.form_select}
               onChange={(e) => {
+                console.log(formValues.category)
                 setFormValues({ ...formValues, category: e.target.value })
-              }}>
+              }}
+              required
+            >
+              <option value="" disabled hidden>Izvēlieties kategoriju</option>
               {categories.map(category => (
                 <option key={uuid()} value={category}>{category}</option>
               ))}

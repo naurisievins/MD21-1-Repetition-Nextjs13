@@ -3,26 +3,14 @@
 import { useEffect, useState } from 'react'
 import React from 'react'
 import axios from 'axios'
-import { Recipe, RecipeSearchParams } from 'types/types'
+import { Recipe } from 'types/types'
 import Filter from './components/Filter/Filter'
 import getCategories from 'utils/getCategories'
 import Search from './components/Search/Search'
 import Recipes from './components/Recipes/Recipes'
 import styles from './page.module.scss'
 import Form from './components/Form/Form'
-
-export const recipeInit = {
-  name: '',
-  imgLink: '',
-  content: '',
-  category: ''
-}
-
-export const recipeSearchParamsInit: RecipeSearchParams = {
-  name: '',
-  category: '',
-  method: 'search',
-}
+import { recipeInit, recipeSearchParamsInit } from 'utils/initValues'
 
 export default function Main() {
 

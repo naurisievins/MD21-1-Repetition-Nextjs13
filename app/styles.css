@@ -9,51 +9,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: 100%;
   gap: 20px;
-  padding: 10px;
-}
-
-.recipe {
-  display: flex;
-  flex-direction: column;
-  background-color: #a0aa8e;
-  color: rgb(41, 42, 43);
-  gap: 10px;
-  height: 100%;
-  overflow: hidden;
-  max-width: 300px;
-  border: 1px solid rgb(121, 122, 120);
-  border-radius: 10px;
-}
-
-.recipe:hover {
-  box-shadow: 0px -5px 10px 0px rgba(231, 229, 229, 0.5)
-}
-
-.recipe__name {
-  font-weight: bold;
-  font-size: 1.5rem;
-  padding: 0 20px;
-}
-
-.recipe__content {
-  display: flex;
-  max-width: 100%;
-  padding: 10px;
-  align-self: start;
-  white-space: pre-wrap;
-  margin: 0;
-}
-
-.recipe__image {
-  position: center;
-  max-width: 600px;
-}
-
-.recipe__image > img {
-  margin: 0 auto;
-  width: 100%;
 }
 
 .title {
@@ -61,34 +17,6 @@
   font-size: 3rem;
   color: rgb(204, 203, 198);
   text-align: center;
-}
-
-.recipe-full {
-  display: flex;
-  color: rgb(41, 42, 43);
-  flex-direction: column;
-  align-items: center;
-  background-color: #a0aa8e;
-  gap: 10px;
-  height: 100%;
-  padding-top: 20px;
-  overflow: hidden;
-  max-width: 800px;
-  border: 1px solid rgb(180, 196, 173);
-  border-radius: 10px;
-}
-
-.container--home {
-  background-image: url(https://img.freepik.com/premium-photo/open-blank-recipe-book-brown-wooden-background-with-tomatoes-garlic-green-onion_489646-1167.jpg?w=1380);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  background-color:rgb(204, 203, 198);
-  color: rgb(41, 42, 43);
-  height: 75vh;
-  width: 90%;
-  border-radius: 7px;
-  position: relative;
 }
 
 .content {
@@ -123,4 +51,12 @@
   font-size: 3rem;
   color: white;
   margin: 0 auto;
+}
+
+.filter_container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  justify-content: center;
 }

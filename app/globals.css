@@ -15,7 +15,8 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
     Helvetica Neue, sans-serif;
-    padding: 0 2rem;
+  padding: 0 2rem;
+  padding-top: 0.5rem;
 }
 
 a {
@@ -33,17 +34,11 @@ main {
   flex-direction: column;
 }
 
-input, textarea { 
-  display: block;
-  max-width: 300px;
-  margin: 0.5rem 0;
-}
-
 button {
   background-color: #141313;
   border: none;
   color: white;
-  padding: 0.7rem 2rem;
+  padding: 0.7rem 1.4rem;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -56,22 +51,22 @@ button:hover {
 }
 
 nav {
+  display: flex;
+  position: sticky;
+  top: 5px;
+  opacity: 0.9;
+  justify-content: space-between;
+  gap: 20px;
   background-color: #545a49;
   padding: 5px 10px;
   box-shadow: 0 2px 4px 0 rgba(180, 197, 157, 0.658);
   border-radius: 5px;
 }
 
-label {
+nav > a {
   display: flex;
   align-items: center;
-  gap: 10px;
-  color: rgb(31, 29, 29);
-  font-weight: 500;
-}
-
-label > input {
-  border-radius: 5px;
-  border: none;
-  padding: 5px;
+  color:rgb(31, 29, 29);
+  font-weight: 600;
+  font-size: 1.2rem;
 }

@@ -7,11 +7,26 @@ export default async function GetRecipes(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  const { name, category, method } = req.query;
+
   if (req.method === "GET") {
     try {
       await connectMongo();
+      let result;
 
-      const result = await Recipe.find<RecipeType[]>();
+      if (method === "search") {
+        if (name) {
+          result = await Recipe.find<RecipeType[]>({
+            name: { $regex: name, $options: "i" },
+          });
+        } else {
+          result = await Recipe.find<RecipeType[]>();
+        }
+      } else if (method === "filter") {
+        if (category) {
+          result = await Recipe.find<RecipeType[]>({ category });
+        }
+      }
 
       res.status(200).json(result);
     } catch (error) {

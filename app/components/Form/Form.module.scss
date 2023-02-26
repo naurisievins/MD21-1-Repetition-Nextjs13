@@ -1,0 +1,39 @@
+.form_container {
+  margin: 0 auto;
+  display: flex;
+  color: rgb(41, 42, 43);
+  flex-direction: column;
+  align-items: center;
+  background-color: #a0aa8e;
+  padding: 20px;
+  overflow: hidden;
+  max-width: 800px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.form_label {
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.form_label > input, .form_label > textarea {
+  margin: 0;
+  max-width: 760px;
+  padding: 3px 5px;
+}
+
+.form_label>textarea {
+  min-height: 200px;
+}

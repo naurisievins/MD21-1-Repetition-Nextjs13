@@ -18,4 +18,11 @@ export type CategoryObject = {
 
 export type FilterProps = {
   categories: string[];
+  setRecipeSearchParams: Function;
+};
+
+export type RecipeSearchParams = {
+  name: string;
+  category: string;
+  method: "search" | "filter";
 };

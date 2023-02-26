@@ -14,7 +14,7 @@ export default function Filter({ categories, setRecipeSearchParams }: FilterProp
               setRecipeSearchParams({ name: '', method: 'search', category: '' })
             }}
           >
-            Visas
+            Visas ({categories.length})
           </button>
           {categories.map(category => (
             <button key={uuid()}

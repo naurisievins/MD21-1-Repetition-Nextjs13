@@ -55,7 +55,11 @@ export default function Main() {
           {showAddForm ? 'Aizvērt formu' : 'Pievienot recepti'}
         </button>
       </div>
-      <h2 className={styles.title}>Lieliskas receptes</h2>
+      <h2 className={styles.title}>
+        {recipes.length === 1 && `${recipes.length} Lieliska recepte`}
+        {recipes.length > 1 && `${recipes.length} Lieliskas receptes`}
+        {!recipes && 'Lieliskas receptes'}
+      </h2>
       <div className={styles.filter_container}>
         {!showAddForm && <Filter categories={categories} setRecipeSearchParams={setRecipeSearchParams} />}
       </div>

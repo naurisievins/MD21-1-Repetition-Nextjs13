@@ -77,7 +77,7 @@ export default function Main() {
           :
           (<>
             {recipes.length === 0 && (<p>Nekas netika atrasts!</p>)}
-            <Recipes recipes={recipes} />
+            <Recipes recipes={recipes} setRecipeSearchParams={setRecipeSearchParams} />
           </>)
         }
 

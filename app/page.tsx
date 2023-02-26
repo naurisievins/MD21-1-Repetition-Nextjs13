@@ -30,15 +30,12 @@ export default function Main() {
 
     axios.get('../api/GetRecipes', { params: recipeSearchParams })
       .then(res => {
-        console.log('axios get pie useeffect', res.data)
         setRecipes(res.data);
       })
       .catch(err => {
         console.log(err);
       });
 
-
-    setRecipeSearchParams(recipeSearchParamsInit)
     setLoading(false)
 
   }, [recipeSearchParams])

@@ -24,7 +24,10 @@ export default function Form(
 
   const handleSubmit = (formValues: Recipe) => {
     axios.post('api/PostRecipe', { formValues })
-      .then(res => console.log(res))
+      .then(res => {
+        console.log(res);
+        setRecipeSearchParams && setRecipeSearchParams({ ...recipeSearchParamsInit, refetch: true });
+      })
       .catch(err => console.log(err));
 
 
@@ -49,7 +52,6 @@ export default function Form(
           setFormValues(recipeInit);
           setShowAddForm && setShowAddForm(false);
           setShowEditForm && setShowEditForm(false);
-          setRecipeSearchParams && setRecipeSearchParams({ ...recipeSearchParamsInit, refetch: true })
         }}
       >
         <label className={styles.form_label}>

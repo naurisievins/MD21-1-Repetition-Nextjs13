@@ -34,8 +34,9 @@ export type FormProps = {
   setShowAddForm?: Function;
   setShowEditForm?: Function;
   title: string;
-  setRecipeSearchParams: Function;
-  categories: string[];
+  categories?: string[];
+  setRecipeSearchParams?: Function;
+  setRecipe?: Function;
 };
 
 export type RecipeProps = {

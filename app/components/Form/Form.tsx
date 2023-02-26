@@ -7,12 +7,16 @@ import { recipeInit } from 'app/page'
 import { recipeSearchParamsInit } from 'app/page'
 import { v4 as uuid } from 'uuid'
 
-export default function Form({ recipe,
-  setShowAddForm,
-  setShowEditForm,
-  title,
-  setRecipeSearchParams,
-  categories }: FormProps) {
+export default function Form(
+  {
+    recipe,
+    setShowAddForm,
+    setShowEditForm,
+    title,
+    setRecipeSearchParams,
+    categories,
+    setRecipe
+  }: FormProps) {
 
   const [formValues, setFormValues] = useState(recipe)
   const [showCategoryInput, setShowCategoryInput] = useState(false)
@@ -25,6 +29,15 @@ export default function Form({ recipe,
       .catch(function (error) {
         console.log(error);
       });
+
+    setRecipe && setRecipe({
+      ...recipe,
+      name: formValues.name,
+      imgLink: formValues.imgLink,
+      content: formValues.content,
+      category: formValues.category
+    })
+
   }
 
   return (
@@ -37,7 +50,7 @@ export default function Form({ recipe,
           setFormValues(recipeInit);
           setShowAddForm && setShowAddForm(false);
           setShowEditForm && setShowEditForm(false);
-          setRecipeSearchParams({ ...recipeSearchParamsInit, refetch: true })
+          setRecipeSearchParams && setRecipeSearchParams({ ...recipeSearchParamsInit, refetch: true })
         }}
       >
         <label className={styles.form_label}>
@@ -50,17 +63,17 @@ export default function Form({ recipe,
           />
         </label>
 
-
-
-
         <label className={styles.form_label}>
           <span>
-            Kategorija <span>
-              (<u onClick={() => setShowCategoryInput(!showCategoryInput)}>
-                {showCategoryInput ? 'Izvēlēties no esošajām' : 'Jauna kategorija'}</u>)
-            </span>
+            <span>Kategorija </span>
+            {!formValues._id &&
+              (<span>
+                (<u onClick={() => setShowCategoryInput(!showCategoryInput)}>
+                  {showCategoryInput ? 'Izvēlēties no esošajām' : 'Jauna kategorija'}</u>)
+              </span>)
+            }
           </span>
-          {(categories.length > 1 && !showCategoryInput) ?
+          {(categories && categories.length > 1 && !showCategoryInput) ?
             (<select className={styles.form_select}
               onChange={(e) => {
                 setFormValues({ ...formValues, category: e.target.value })
@@ -78,11 +91,6 @@ export default function Form({ recipe,
               />
             )}
         </label>
-
-
-
-
-
 
         <label className={styles.form_label}>
           Bilde

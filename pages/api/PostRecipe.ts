@@ -17,6 +17,9 @@ export default async function PostRecipe(
 
       if (!id) {
         recipe = new Recipe(recipeForm);
+        await recipe.save();
+      } else {
+        await Recipe.findOneAndUpdate({ _id: id }, recipeForm);
       }
 
       // const recipe = new Recipe({
@@ -26,8 +29,6 @@ export default async function PostRecipe(
       //   date: new Date(),
       //   category: "desert",
       // });
-
-      await recipe.save();
 
       res.status(200).json({ message: "Recipe added successfully" });
     } catch (error) {

@@ -7,6 +7,7 @@ import Link from "next/link";
 import styles from './page.module.scss'
 import Form from "app/components/Form/Form";
 
+
 export default function CharById({ params }: CharByIdParams) {
 
   const id = params.id
@@ -21,7 +22,11 @@ export default function CharById({ params }: CharByIdParams) {
       .catch(err => {
         console.log(err);
       })
-  }, [id])
+  }, [id, recipe])
+
+  if (!recipe) {
+    return <p>Nekas netika atrasts!</p>
+  }
 
   return (
     <div className={styles.container}>
@@ -38,7 +43,11 @@ export default function CharById({ params }: CharByIdParams) {
               }
             </button>
           </div>
-          {(showEditForm && recipe) ? <Form recipe={recipe} setShowEditForm={setShowEditForm} title={"Labot recepti"} /> :
+          {(showEditForm && recipe) ? <Form
+            recipe={recipe}
+            setShowEditForm={setShowEditForm}
+            title={"Labot recepti"}
+            setRecipe={setRecipe} /> :
             (<>
               <div className={styles.recipe_image}>
                 <img src={recipe.imgLink} alt={recipe.name} />
@@ -47,9 +56,6 @@ export default function CharById({ params }: CharByIdParams) {
               <pre className={styles.recipe_content}>{recipe.content}</pre>
             </>)
           }
-
-
-
         </div>
       )}
     </div>

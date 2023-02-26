@@ -29,7 +29,7 @@ a {
 main {
   min-height: 100vh;
   min-width: 320px;
-  padding: 1rem 0;
+  padding-bottom: 1rem;
   display: flex;
   flex-direction: column;
 }
@@ -38,7 +38,7 @@ button {
   background-color: #141313;
   border: none;
   color: white;
-  padding: 0.7rem 1.4rem;
+  padding: 0.5rem 1.4rem;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -69,4 +69,16 @@ nav > a {
   color:rgb(31, 29, 29);
   font-weight: 600;
   font-size: 1.2rem;
+}
+
+@media only screen and (max-width: 600px) {
+  /* // nav {
+  //   text-align: center;
+  // } */
+
+  body,
+  html {
+    padding: 0;
+    margin: 0;
+  }
 }

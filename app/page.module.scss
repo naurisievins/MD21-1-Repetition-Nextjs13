@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
 }
 
 .container {
@@ -10,6 +9,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
+  width: 100%;
 }
 
 .title {
@@ -28,22 +28,23 @@
   font-weight: 600;
 }
 
+.top_option_bar {
+  background-color: #141313;
+  display: flex;
+  width: 100%;
+  padding: 0 10px;
+  justify-content: space-between;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
 @media only screen and (max-width: 600px) {
-  nav {
-    text-align: center;
-  }
-
-  body, html {
-    padding: 0;
-    margin: 0;
-  }
-
   .wrapper {
     padding: 0;
   }
 
   .title {
     font-size: 1.5rem;
+    padding: 0;
   }
 }
 
@@ -57,6 +58,12 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  margin: 10px 0 20px 0;
   width: 100%;
   justify-content: center;
+}
+
+.add_recipe_btn {
+  color: green !important;
+  font-size: 0.9rem;
 }

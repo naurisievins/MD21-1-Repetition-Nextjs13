@@ -7,16 +7,25 @@ export default async function PostRecipe(
   res: NextApiResponse
 ) {
   if (req.method === "POST") {
+    const recipeForm = req.body.formValues;
+    const { _id: id } = recipeForm;
+
     try {
       await connectMongo();
 
-      const recipe = new Recipe({
-        name: "Kartupelis",
-        imgLink: "/",
-        content: "kartupelis?",
-        date: new Date(),
-        category: "desert",
-      });
+      let recipe;
+
+      if (!id) {
+        recipe = new Recipe(recipeForm);
+      }
+
+      // const recipe = new Recipe({
+      //   name: "Kartupelis",
+      //   imgLink: "/",
+      //   content: "kartupelis?",
+      //   date: new Date(),
+      //   category: "desert",
+      // });
 
       await recipe.save();
 

@@ -3,10 +3,7 @@ import Image from "next/image";
 import spliceContent from "utils/spliceContent";
 import { Recipe } from "types/types";
 import styles from "./Recipes.module.scss";
-
-type RecipeProps = {
-  recipes: Recipe[]
-}
+import { RecipeProps } from "types/types";
 
 export default function Recipes({ recipes }: RecipeProps) {
 

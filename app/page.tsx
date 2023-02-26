@@ -1,22 +1,30 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import React from 'react'
 import axios from 'axios'
-import './styles.css'
 import { Recipe, RecipeSearchParams } from 'types/types'
 import Filter from './components/Filter/Filter'
 import getCategories from 'utils/getCategories'
 import Search from './components/Search/Search'
 import Recipes from './components/Recipes/Recipes'
+import styles from './page.module.scss'
 import Form from './components/Form/Form'
 
-export default function Main() {
+export const recipeInit = {
+  name: '',
+  imgLink: '',
+  content: '',
+  category: ''
+}
 
-  const recipeSearchParamsInit: RecipeSearchParams = {
-    name: '',
-    category: '',
-    method: 'search',
-  }
+export const recipeSearchParamsInit: RecipeSearchParams = {
+  name: '',
+  category: '',
+  method: 'search',
+}
+
+export default function Main() {
 
   const [recipes, setRecipes] = useState<Recipe[]>([])
   const [categories, setCategories] = useState<string[]>([])
@@ -36,6 +44,7 @@ export default function Main() {
       .catch(err => {
         console.log(err);
       });
+
     // setLoading(false)
   }, [recipeSearchParams])
 
@@ -44,16 +53,34 @@ export default function Main() {
   // }
 
   return (
-    <div className='wrapper'>
-      <h2 className='title'>Lieliskas receptes</h2>
-      <div className="filter_container">
-        <Filter categories={categories} setRecipeSearchParams={setRecipeSearchParams} />
+    <div className={styles.wrapper}>
+      <h2 className={styles.title}>Lieliskas receptes</h2>
+      <div className={styles.top_option_bar}>
         <Search setRecipeSearchParams={setRecipeSearchParams} />
-
+        <button className={styles.add_recipe_btn}
+          onClick={() => setShowAddForm(!showAddForm)}
+        >
+          {showAddForm ? 'Aizvērt formu' : 'Pievienot recepti'}
+        </button>
       </div>
-      <div className='container'>
-        {recipes.length === 0 && (<p>Nekas netika atrasts!</p>)}
-        <Recipes recipes={recipes} />
+      <div className={styles.filter_container}>
+        {!showAddForm && <Filter categories={categories} setRecipeSearchParams={setRecipeSearchParams} />}
+      </div>
+      <div className={styles.container}>
+        {showAddForm ?
+          <Form recipe={recipeInit}
+            setShowAddForm={setShowAddForm}
+            title={"Pievienot recepti"}
+            setRecipeSearchParams={setRecipeSearchParams}
+            categories={categories}
+          />
+          :
+          (<>
+            {recipes.length === 0 && (<p>Nekas netika atrasts!</p>)}
+            <Recipes recipes={recipes} />
+          </>)
+        }
+
       </div>
     </div>
   )

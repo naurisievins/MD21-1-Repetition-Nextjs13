@@ -2,7 +2,6 @@
 
 import axios from "axios";
 import { useState, useEffect } from "react";
-import '../styles.css'
 import { Recipe, CharByIdParams } from "types/types";
 import Link from "next/link";
 import styles from './page.module.scss'
@@ -39,7 +38,7 @@ export default function CharById({ params }: CharByIdParams) {
               }
             </button>
           </div>
-          {(showEditForm && recipe) ? <Form recipe={recipe} /> :
+          {(showEditForm && recipe) ? <Form recipe={recipe} setShowEditForm={setShowEditForm} title={"Labot recepti"} /> :
             (<>
               <div className={styles.recipe_image}>
                 <img src={recipe.imgLink} alt={recipe.name} />

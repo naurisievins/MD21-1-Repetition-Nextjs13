@@ -1,5 +1,3 @@
-import { Ref } from "react";
-
 export type Recipe = {
   _id?: string;
   name: string;
@@ -43,6 +41,7 @@ export type RecipeProps = {
   recipes: Recipe[];
 };
 
-export type HeaderParams = {
+export type SearchParams = {
   setRecipeSearchParams: Function;
+  setSearchLength: Function;
 };

@@ -1,8 +1,8 @@
 import styles from './Search.module.scss'
-import { HeaderParams } from "types/types";
+import { SearchParams } from "types/types";
 import debounce from 'utils/debounce';
 
-export default function Header({ setRecipeSearchParams }: HeaderParams) {
+export default function Search({ setRecipeSearchParams, setSearchLength }: SearchParams) {
 
   const handleInputChange = (eventValue: string) => {
     setRecipeSearchParams({
@@ -10,6 +10,7 @@ export default function Header({ setRecipeSearchParams }: HeaderParams) {
       method: 'search',
       category: ''
     })
+    setSearchLength(eventValue.length)
   }
 
   const debouncedHandleInputChange = debounce(

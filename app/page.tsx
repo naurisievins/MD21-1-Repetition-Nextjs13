@@ -19,6 +19,7 @@ export default function Main() {
   const [recipeSearchParams, setRecipeSearchParams] = useState(recipeSearchParamsInit)
   const [showAddForm, setShowAddForm] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [searchLength, setSearchLength] = useState(0)
 
 
 
@@ -48,7 +49,7 @@ export default function Main() {
     <div className={styles.wrapper}>
 
       <div className={styles.top_option_bar}>
-        <Search setRecipeSearchParams={setRecipeSearchParams} />
+        <Search setRecipeSearchParams={setRecipeSearchParams} setSearchLength={setSearchLength} />
         <button className={styles.add_recipe_btn}
           onClick={() => setShowAddForm(!showAddForm)}
         >
@@ -73,7 +74,7 @@ export default function Main() {
           />
           :
           (<>
-            {recipes.length === 0 && (<p>Nekas netika atrasts!</p>)}
+            {(searchLength > 0 && recipes.length === 0) && (<p>Nekas netika atrasts!</p>)}
             <Recipes recipes={recipes} />
           </>)
         }

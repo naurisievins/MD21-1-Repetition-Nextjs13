@@ -46,3 +46,13 @@
   padding: 3px 5px;
   cursor: pointer;
 }
+
+.error_container {
+  display: flex;
+  flex-direction: column;
+  background-color:rgb(172, 136, 136);
+  gap: 3px;
+  padding: 8px;
+  border-radius: 7px;
+
+}

@@ -1,12 +1,14 @@
-'use client'
+'use client';
 
-import styles from './Form.module.scss'
-import { useState } from 'react'
-import { Recipe } from 'types/types'
-import axios from 'axios'
-import { FormProps } from 'types/types'
-import { v4 as uuid } from 'uuid'
-import { recipeInit, recipeSearchParamsInit } from 'utils/initValues'
+import styles from './Form.module.scss';
+import { useState, useEffect, useRef } from 'react';
+import { Recipe } from 'types/types';
+import axios from 'axios';
+import { FormProps } from 'types/types';
+import { v4 as uuid } from 'uuid';
+import { recipeInit, recipeSearchParamsInit } from 'utils/initValues';
+import { nameValidation, urlValidation, contentValidation, categoryValidation } from 'utils/validation';
+import showErrorMessage from 'utils/showErrorMessage';
 
 export default function Form(
   {
@@ -21,15 +23,35 @@ export default function Form(
 
   const [formValues, setFormValues] = useState(recipe)
   const [showCategoryInput, setShowCategoryInput] = useState(false)
+  const [invalidInput, setInvalidInput] = useState(recipeInit)
+
+  useEffect(() => {
+    const validInput = Object.values(invalidInput).every(value => value === 'valid')
+    if (validInput) {
+      handleSubmit(formValues);
+    }
+    // eslint-disable-next-line
+  }, [invalidInput]);
+
+
+
+  const validateInput = () => {
+    setInvalidInput({
+      name: nameValidation(formValues.name) ? nameValidation(formValues.name) : 'valid',
+      imgLink: urlValidation(formValues.imgLink) ? urlValidation(formValues.imgLink) : 'valid',
+      category: categoryValidation(formValues.category) ? categoryValidation(formValues.category) : 'valid',
+      content: contentValidation(formValues.content) ? contentValidation(formValues.content) : 'valid'
+    })
+  }
 
   const handleSubmit = (formValues: Recipe) => {
+
     axios.post('api/PostRecipe', { formValues })
       .then(res => {
         console.log(res);
         setRecipeSearchParams && setRecipeSearchParams({ ...recipeSearchParamsInit, refetch: true });
       })
       .catch(err => console.log(err));
-
 
     // To update recipe after editing
     setRecipe && setRecipe({
@@ -40,7 +62,12 @@ export default function Form(
       category: formValues.category
     })
 
+    setFormValues(recipeInit);
+    setShowAddForm && setShowAddForm(false);
+    setShowEditForm && setShowEditForm(false);
   }
+
+
 
   return (
     <div className={styles.form_container}>
@@ -48,10 +75,7 @@ export default function Form(
       <form className={styles.form}
         onSubmit={(e) => {
           e.preventDefault();
-          handleSubmit(formValues);
-          setFormValues(recipeInit);
-          setShowAddForm && setShowAddForm(false);
-          setShowEditForm && setShowEditForm(false);
+          validateInput();
         }}
       >
         <label className={styles.form_label}>
@@ -69,7 +93,10 @@ export default function Form(
             <span>Kategorija </span>
             {!formValues._id &&
               (<span>
-                (<u onClick={() => setShowCategoryInput(!showCategoryInput)}>
+                (<u onClick={() => {
+                  setShowCategoryInput(!showCategoryInput)
+                  setFormValues({ ...formValues, category: '' })
+                }}>
                   {showCategoryInput ? 'Izvēlēties no esošajām' : 'Jauna kategorija'}</u>)
               </span>)
             }
@@ -102,7 +129,7 @@ export default function Form(
           Bilde
           <input type="text"
             required
-            placeholder="Saite uz bildi"
+            placeholder="Saite uz bildi: http://..."
             value={formValues.imgLink}
             onChange={(e) => setFormValues({ ...formValues, imgLink: e.target.value })}
           />
@@ -116,9 +143,17 @@ export default function Form(
             onChange={(e) => setFormValues({ ...formValues, content: e.target.value })}
           />
         </label>
-
+        {Object.values(invalidInput).some(value => showErrorMessage(value)) &&
+          (<div className={styles.error_container}>
+            {showErrorMessage(invalidInput.name) && <span><b>Nosaukums:</b> {invalidInput.name}</span>}
+            {showErrorMessage(invalidInput.category) && <span><b>Kategorija:</b> {invalidInput.category}</span>}
+            {showErrorMessage(invalidInput.imgLink) && <span><b>Bilde:</b> {invalidInput.imgLink}</span>}
+            {showErrorMessage(invalidInput.content) && <span><b>Apraksts:</b> {invalidInput.content}</span>}
+          </div>)
+        }
         <button>Apstiprināt</button>
       </form>
     </div>
   )
 }
+

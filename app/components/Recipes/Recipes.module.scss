@@ -18,6 +18,7 @@
   font-weight: bold;
   font-size: 1.5rem;
   padding: 0 20px;
+  word-break: break-word;
 }
 
 .recipe_content {
@@ -32,9 +33,12 @@
 
 .recipe_category {
   padding: 0 20px;
+  word-break: break-word;
+  font-style: italic;
 }
 
 .recipe_image {
   position: center;
   max-width: 600px;
+  word-break: break-word;
 }

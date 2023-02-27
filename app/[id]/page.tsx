@@ -6,14 +6,19 @@ import { Recipe, CharByIdParams } from "types/types";
 import Link from "next/link";
 import styles from './page.module.scss'
 import Form from "app/components/Form/Form";
-import { ToastContainer } from "react-toastify";
-
+import { toast, ToastContainer } from "react-toastify";
+import authorized from "utils/authorized";
+import { useRouter } from 'next/navigation';
+import passwordPrompt from "utils/passwordPrompt";
+import passwordToast from 'utils/passwordToast';
+import getSessionKey from "utils/getSessionKey";
 
 export default function CharById({ params }: CharByIdParams) {
 
   const id = params.id
   const [recipe, setRecipe] = useState<Recipe>()
   const [showEditForm, setShowEditForm] = useState(false)
+  const router = useRouter();
 
   useEffect(() => {
     axios.get(`../api/${id}`)
@@ -25,6 +30,34 @@ export default function CharById({ params }: CharByIdParams) {
       })
   }, [id, recipe])
 
+  const handleDelete = () => {
+
+    const deleteRecepe = () => {
+      axios.delete(`../api/${id}`, {
+        data: {
+          key: getSessionKey(),
+        }
+      })
+        .then(() => {
+          setTimeout(() => router.push('/'), 1500);
+          toast.success('Recepte izdzēsta')
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    }
+
+    if (authorized()) {
+      deleteRecepe();
+    } else {
+      passwordPrompt()
+      if (passwordToast()) {
+        deleteRecepe();
+      };
+    }
+
+  }
+
   return (
     <div className={styles.container}>
       {recipe && (
@@ -33,12 +66,18 @@ export default function CharById({ params }: CharByIdParams) {
             <Link href="/">
               <button>&#8656; Atpakaļ</button>
             </Link>
-            <button onClick={() => setShowEditForm(!showEditForm)}>
-              {showEditForm ?
-                'Aizvērt' :
-                <>&#9998; Labot</>
-              }
-            </button>
+            <div className={styles.top_menu_btn_container}>
+              <button onClick={() => {
+                const acceptDelete = confirm('Vai tiešām vēlaties izdzēst recepti?')
+                acceptDelete && handleDelete()
+              }}>&#10005; Izdzēst</button>
+              <button onClick={() => setShowEditForm(!showEditForm)}>
+                {showEditForm ?
+                  'Aizvērt' :
+                  <>&#9998; Labot</>
+                }
+              </button>
+            </div>
           </div>
           {(showEditForm && recipe) ? <Form
             recipe={recipe}

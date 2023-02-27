@@ -14,6 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import authorized from 'utils/authorized';
 import passwordToast from 'utils/passwordToast';
 import getSessionKey from 'utils/getSessionKey';
+import passwordPrompt from 'utils/passwordPrompt';
 
 export default function Form(
   {
@@ -32,11 +33,6 @@ export default function Form(
 
   useEffect(() => {
     const validInput = Object.values(invalidInput).every(value => value === 'valid')
-
-    const passwordPrompt = () => {
-      const password = prompt("Lūdzu, ievadiet paroli:");
-      password && sessionStorage.setItem("accesss_key", password);
-    }
 
     // Toasts and authorization check for edit recipe
     if (validInput && formValues._id) {

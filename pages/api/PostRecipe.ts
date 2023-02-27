@@ -12,6 +12,9 @@ export default async function PostRecipe(
     const userKey = req.body.key;
     const accessKey = process.env.NEXT_PUBLIC_ACCESS_KEY;
 
+    console.log("userKey", userKey);
+    console.log("accessKey", accessKey);
+
     if (userKey === accessKey) {
       try {
         await connectMongo();

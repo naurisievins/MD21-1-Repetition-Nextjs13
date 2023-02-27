@@ -1,7 +1,7 @@
 'use client';
 
 import styles from './Form.module.scss';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Recipe } from 'types/types';
 import axios from 'axios';
 import { FormProps } from 'types/types';
@@ -13,6 +13,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import authorized from 'utils/authorized';
 import passwordToast from 'utils/passwordToast';
+import getSessionKey from 'utils/getSessionKey';
 
 export default function Form(
   {
@@ -25,48 +26,47 @@ export default function Form(
     setRecipe
   }: FormProps) {
 
-  const [formValues, setFormValues] = useState(recipe)
-  const [showCategoryInput, setShowCategoryInput] = useState(false)
-  const [invalidInput, setInvalidInput] = useState(recipeInit)
-  let key = sessionStorage.getItem("accesss_key");
-
+  const [formValues, setFormValues] = useState(recipe);
+  const [showCategoryInput, setShowCategoryInput] = useState(false);
+  const [invalidInput, setInvalidInput] = useState(recipeInit);
 
   useEffect(() => {
     const validInput = Object.values(invalidInput).every(value => value === 'valid')
-    if (validInput) {
-      //handleSubmit(formValues);
+
+    const passwordPrompt = () => {
+      const password = prompt("Lūdzu, ievadiet paroli:");
+      password && sessionStorage.setItem("accesss_key", password);
     }
 
-    // Toasts and authorization check for added or edited recipe
+    // Toasts and authorization check for edit recipe
     if (validInput && formValues._id) {
 
       const recipeEdited = () => {
-        handleSubmit(formValues);
+        handleSubmit(formValues, getSessionKey());
         toast.success("Recepte izlabota!")
       }
 
       if (authorized()) {
         recipeEdited();
       } else {
-        const password = prompt("Lūdzu, ievadiet paroli:");
-        password && sessionStorage.setItem("accesss_key", password);
+        passwordPrompt();
         if (passwordToast()) {
           recipeEdited();
         };
       }
 
+      // Toasts and authorization check for add recipe
     } else if (validInput && !formValues._id) {
 
       const recipeAdded = () => {
-        handleSubmit(formValues);
+        handleSubmit(formValues, getSessionKey());
         toast.success("Jauna recepte pievienota!")
       }
 
       if (authorized()) {
         recipeAdded();
       } else {
-        const password = prompt("Lūdzu, ievadiet paroli:")
-        password && sessionStorage.setItem("accesss_key", password)
+        passwordPrompt();
         if (passwordToast()) {
           recipeAdded();
         };
@@ -87,7 +87,7 @@ export default function Form(
     })
   }
 
-  const handleSubmit = (formValues: Recipe) => {
+  const handleSubmit = (formValues: Recipe, key: string | null | undefined) => {
 
     axios.post('api/PostRecipe', { formValues, key })
       .then(res => {

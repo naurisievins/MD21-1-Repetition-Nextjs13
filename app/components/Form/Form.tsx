@@ -77,10 +77,15 @@ export default function Form(
     setShowEditForm && setShowEditForm(false);
   }
 
-
-
   return (
     <div className={styles.form_container}>
+      {!formValues._id &&
+        (<div className={styles.close_form_btn}
+          onClick={() => setShowAddForm && setShowAddForm(false)}
+        >
+          [x]
+        </div>)
+      }
       <span className={styles.title}>{title}</span>
       <form className={styles.form}
         onSubmit={(e) => {

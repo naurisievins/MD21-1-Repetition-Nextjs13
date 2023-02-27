@@ -1,4 +1,5 @@
 .form_container {
+  position: relative;
   margin: 0 auto;
   display: flex;
   color: rgb(41, 42, 43);
@@ -54,5 +55,17 @@
   gap: 3px;
   padding: 8px;
   border-radius: 7px;
+}
 
+.close_form_btn {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  color: rgb(100, 41, 41);
+  font-size: 1.5rem;
+  cursor: pointer;
+  &:hover {
+    color: rgb(26, 24, 24);
+
+  }
 }

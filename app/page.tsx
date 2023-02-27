@@ -73,7 +73,7 @@ export default function Main() {
           />
           :
           (<>
-            {/* {recipes.length === 0 && (<p>Nekas netika atrasts!</p>)} */}
+            {recipes.length === 0 && (<p>Nekas netika atrasts!</p>)}
             <Recipes recipes={recipes} />
           </>)
         }

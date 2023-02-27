@@ -42,3 +42,7 @@ export type FormProps = {
 export type RecipeProps = {
   recipes: Recipe[];
 };
+
+export type HeaderParams = {
+  setRecipeSearchParams: Function;
+};

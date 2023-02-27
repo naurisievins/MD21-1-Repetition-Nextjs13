@@ -11,6 +11,7 @@ import Recipes from './components/Recipes/Recipes'
 import styles from './page.module.scss'
 import Form from './components/Form/Form'
 import { recipeInit, recipeSearchParamsInit } from 'utils/initValues'
+import { ToastContainer } from 'react-toastify'
 
 export default function Main() {
 
@@ -76,6 +77,7 @@ export default function Main() {
           </>)
         }
       </div>
+      <ToastContainer />
     </div>
   )
 }

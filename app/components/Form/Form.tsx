@@ -37,23 +37,37 @@ export default function Form(
 
     // Toasts and authorization check for added or edited recipe
     if (validInput && formValues._id) {
-      if (authorized()) {
-        toast.success("Recepte izlabota!")
+
+      const recipeEdited = () => {
         handleSubmit(formValues);
+        toast.success("Recepte izlabota!")
+      }
+
+      if (authorized()) {
+        recipeEdited();
       } else {
         const password = prompt("Lūdzu, ievadiet paroli:");
         password && sessionStorage.setItem("accesss_key", password);
-        passwordToast();
+        if (passwordToast()) {
+          recipeEdited();
+        };
       }
 
     } else if (validInput && !formValues._id) {
-      if (authorized()) {
-        toast.success("Jauna recepte pievienota!")
+
+      const recipeAdded = () => {
         handleSubmit(formValues);
+        toast.success("Jauna recepte pievienota!")
+      }
+
+      if (authorized()) {
+        recipeAdded();
       } else {
         const password = prompt("Lūdzu, ievadiet paroli:")
         password && sessionStorage.setItem("accesss_key", password)
-        passwordToast();
+        if (passwordToast()) {
+          recipeAdded();
+        };
       }
     }
 

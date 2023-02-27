@@ -23,7 +23,6 @@ export default function Recipes({ recipes }: RecipeProps) {
               <span className={styles.recipe_category}>Kategorija: {recipe.category}</span>
               <p className={styles.recipe_content}>{spliceContent(recipe.content)}</p>
             </div>
-            <ToastContainer />
           </Link>
         ))
       }

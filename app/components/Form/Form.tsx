@@ -28,6 +28,8 @@ export default function Form(
   const [formValues, setFormValues] = useState(recipe)
   const [showCategoryInput, setShowCategoryInput] = useState(false)
   const [invalidInput, setInvalidInput] = useState(recipeInit)
+  let key = sessionStorage.getItem("accesss_key");
+
 
   useEffect(() => {
     const validInput = Object.values(invalidInput).every(value => value === 'valid')
@@ -87,7 +89,7 @@ export default function Form(
 
   const handleSubmit = (formValues: Recipe) => {
 
-    axios.post('api/PostRecipe', { formValues })
+    axios.post('api/PostRecipe', { formValues, key })
       .then(res => {
         console.log(res);
         setRecipeSearchParams && setRecipeSearchParams({ ...recipeSearchParamsInit, refetch: true });

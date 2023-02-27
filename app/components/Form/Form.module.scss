@@ -58,14 +58,24 @@
 }
 
 .close_form_btn {
+  padding-bottom: 8px;
+  display: flex;
   position: absolute;
-  top: 0;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: rgba(36, 33, 33, 0.384);
+  top: 5px;
   right: 5px;
-  color: rgb(100, 41, 41);
+  width: 25px;
+  height: 25px;
+  border: none;
+  color: rgb(235, 235, 235);
   font-size: 1.5rem;
   cursor: pointer;
   &:hover {
-    color: rgb(26, 24, 24);
+    background-color: rgba(36, 33, 33, 0.726);
+    color: rgb(172, 170, 170);
 
   }
 }

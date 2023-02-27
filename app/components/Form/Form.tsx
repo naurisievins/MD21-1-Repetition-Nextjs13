@@ -112,7 +112,7 @@ export default function Form(
         (<div className={styles.close_form_btn}
           onClick={() => setShowAddForm && setShowAddForm(false)}
         >
-          [x]
+          x
         </div>)
       }
       <span className={styles.title}>{title}</span>

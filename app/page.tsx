@@ -78,7 +78,6 @@ export default function Main() {
             <Recipes recipes={recipes} />
           </>)
         }
-
       </div>
     </div>
   )

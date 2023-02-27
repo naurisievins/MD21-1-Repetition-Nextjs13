@@ -4,6 +4,7 @@ import spliceContent from "utils/spliceContent";
 import { Recipe } from "types/types";
 import styles from "./Recipes.module.scss";
 import { RecipeProps } from "types/types";
+import { ToastContainer } from "react-toastify";
 
 export default function Recipes({ recipes }: RecipeProps) {
 
@@ -22,6 +23,7 @@ export default function Recipes({ recipes }: RecipeProps) {
               <span className={styles.recipe_category}>Kategorija: {recipe.category}</span>
               <p className={styles.recipe_content}>{spliceContent(recipe.content)}</p>
             </div>
+            <ToastContainer />
           </Link>
         ))
       }

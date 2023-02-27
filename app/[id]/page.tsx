@@ -6,6 +6,7 @@ import { Recipe, CharByIdParams } from "types/types";
 import Link from "next/link";
 import styles from './page.module.scss'
 import Form from "app/components/Form/Form";
+import { ToastContainer } from "react-toastify";
 
 
 export default function CharById({ params }: CharByIdParams) {
@@ -54,6 +55,7 @@ export default function CharById({ params }: CharByIdParams) {
           }
         </div>
       )}
+      <ToastContainer />
     </div>
   );
 }

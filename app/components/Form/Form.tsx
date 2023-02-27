@@ -9,6 +9,8 @@ import { v4 as uuid } from 'uuid';
 import { recipeInit, recipeSearchParamsInit } from 'utils/initValues';
 import { nameValidation, urlValidation, contentValidation, categoryValidation } from 'utils/validation';
 import showErrorMessage from 'utils/showErrorMessage';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Form(
   {
@@ -30,6 +32,14 @@ export default function Form(
     if (validInput) {
       handleSubmit(formValues);
     }
+
+    // Toasts for added or edited recipe
+    if (validInput && formValues._id) {
+      toast.success("Recepte izlabota!")
+    } else if (validInput && !formValues._id) {
+      toast.success("Jauna recepte pievienota!")
+    }
+
     // eslint-disable-next-line
   }, [invalidInput]);
 

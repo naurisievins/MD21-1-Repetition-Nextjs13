@@ -21,8 +21,6 @@ export default function Main() {
   const [loading, setLoading] = useState(true)
   const [searchLength, setSearchLength] = useState(0)
 
-
-
   useEffect(() => {
 
     getCategories().then((categories) => {
@@ -47,7 +45,6 @@ export default function Main() {
 
   return (
     <div className={styles.wrapper}>
-
       <div className={styles.top_option_bar}>
         <Search setRecipeSearchParams={setRecipeSearchParams} setSearchLength={setSearchLength} />
         <button className={styles.add_recipe_btn}

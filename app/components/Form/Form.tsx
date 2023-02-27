@@ -9,8 +9,10 @@ import { v4 as uuid } from 'uuid';
 import { recipeInit, recipeSearchParamsInit } from 'utils/initValues';
 import { nameValidation, urlValidation, contentValidation, categoryValidation } from 'utils/validation';
 import showErrorMessage from 'utils/showErrorMessage';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import authorized from 'utils/authorized';
+import passwordToast from 'utils/passwordToast';
 
 export default function Form(
   {
@@ -30,14 +32,29 @@ export default function Form(
   useEffect(() => {
     const validInput = Object.values(invalidInput).every(value => value === 'valid')
     if (validInput) {
-      handleSubmit(formValues);
+      //handleSubmit(formValues);
     }
 
-    // Toasts for added or edited recipe
+    // Toasts and authorization check for added or edited recipe
     if (validInput && formValues._id) {
-      toast.success("Recepte izlabota!")
+      if (authorized()) {
+        toast.success("Recepte izlabota!")
+        handleSubmit(formValues);
+      } else {
+        const password = prompt("Lūdzu, ievadiet paroli:");
+        password && sessionStorage.setItem("accesss_key", password);
+        passwordToast();
+      }
+
     } else if (validInput && !formValues._id) {
-      toast.success("Jauna recepte pievienota!")
+      if (authorized()) {
+        toast.success("Jauna recepte pievienota!")
+        handleSubmit(formValues);
+      } else {
+        const password = prompt("Lūdzu, ievadiet paroli:")
+        password && sessionStorage.setItem("accesss_key", password)
+        passwordToast();
+      }
     }
 
     // eslint-disable-next-line
@@ -168,6 +185,7 @@ export default function Form(
         }
         <button>Apstiprināt</button>
       </form>
+      <ToastContainer />
     </div>
   )
 }

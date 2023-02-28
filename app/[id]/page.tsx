@@ -29,7 +29,7 @@ export default function CharById({ params }: CharByIdParams) {
         console.log(err);
         setError(true)
       })
-  }, [id, recipe])
+  }, [id])
 
   const handleDelete = () => {
 

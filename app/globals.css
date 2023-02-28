@@ -128,12 +128,7 @@ input {
   color: rgb(197, 197, 197);
 }
 
-
 @media only screen and (max-width: 600px) {
-  /* // nav {
-  //   text-align: center;
-  // } */
-
   body,
   html {
     padding: 0;

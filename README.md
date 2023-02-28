@@ -1,11 +1,11 @@
 # Next.js recipe application
 
-This is my first Next.js application.
+### This is my first Next.js application.
 
--Application hosted on Vercel
--MongoDB hosted on Atlas
+- Application hosted on Vercel
+- MongoDB hosted on Atlas
 
-Main features:
+#### Main features:
 
 - responsive design
 - sort by category or search by name
@@ -14,16 +14,16 @@ Main features:
 - success and error toasts
 - form validation
 
-Packages I used:
+#### Packages I used:
 
-- axios for data fetching
-- mongoose for mongoDB
-- dotenv for storing sensitive data
-- react-toastify for toasts
-- Nod for validation
-- uuid for id generation
+- Axios for data fetching
+- Mongoose for mongoDB
+- Dotenv for storing sensitive data
+- React-toastify for toasts
+- Nod for form validation
+- Uuid for id generation
 
-To run locally:
+#### To run locally:
 
 `npm install`
 `npm run dev`

@@ -12,7 +12,6 @@ import showErrorMessage from 'utils/showErrorMessage';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import authorized from 'utils/authorized';
-import passwordToast from 'utils/passwordToast';
 import getSessionKey from 'utils/getSessionKey';
 import passwordPrompt from 'utils/passwordPrompt';
 
@@ -46,9 +45,6 @@ export default function Form(
         recipeEdited();
       } else {
         passwordPrompt();
-        if (passwordToast()) {
-          recipeEdited();
-        };
       }
 
       // Toasts and authorization check for add recipe
@@ -63,9 +59,6 @@ export default function Form(
         recipeAdded();
       } else {
         passwordPrompt();
-        if (passwordToast()) {
-          recipeAdded();
-        };
       }
     }
 

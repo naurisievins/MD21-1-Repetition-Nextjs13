@@ -10,7 +10,6 @@ import { toast, ToastContainer } from "react-toastify";
 import authorized from "utils/authorized";
 import { useRouter } from 'next/navigation';
 import passwordPrompt from "utils/passwordPrompt";
-import passwordToast from 'utils/passwordToast';
 import getSessionKey from "utils/getSessionKey";
 
 export default function CharById({ params }: CharByIdParams) {
@@ -51,9 +50,6 @@ export default function CharById({ params }: CharByIdParams) {
       deleteRecepe();
     } else {
       passwordPrompt()
-      if (passwordToast()) {
-        deleteRecepe();
-      };
     }
 
   }

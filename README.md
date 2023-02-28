@@ -1,12 +1,36 @@
 # Next.js recipe application
 
+This is my first Next.js application.
+
+-Application hosted on Vercel
+-MongoDB hosted on Atlas
+
+Main features:
+
+- responsive design
+- sort by category or search by name
+- simple authorization check for adding / editing / deleting recipes
+- debounced search
+- success and error toasts
+- form validation
+
+Packages I used:
+
+- axios for data fetching
+- mongoose for mongoDB
+- dotenv for storing sensitive data
+- react-toastify for toasts
+- Nod for validation
+- uuid for id generation
+
 To run locally:
+
 `npm install`
 `npm run dev`
 
 To connect to MongoDB:
 
-At utils/mongoConnect.ts change your connection credentials...
+At utils/mongoConnect.ts change your connection credentials.
 
 ```
 mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@nrnk.zq3cas7.mongodb.net/recipes?retryWrites=true&w=majority

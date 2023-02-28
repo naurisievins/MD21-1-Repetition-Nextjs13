@@ -7,7 +7,10 @@ To run locally:
 To connect to MongoDB:
 
 At utils/mongoConnect.ts change your connection credentials...
-`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@nrnk.zq3cas7.mongodb.net/recipes?retryWrites=true&w=majority`
+
+```
+mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@nrnk.zq3cas7.mongodb.net/recipes?retryWrites=true&w=majority
+```
 
 add .env file to root directory:
 

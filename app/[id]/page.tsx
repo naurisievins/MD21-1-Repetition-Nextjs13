@@ -18,6 +18,7 @@ export default function CharById({ params }: CharByIdParams) {
   const [recipe, setRecipe] = useState<Recipe>()
   const [showEditForm, setShowEditForm] = useState(false)
   const router = useRouter();
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     axios.get(`../api/${id}`)
@@ -26,6 +27,7 @@ export default function CharById({ params }: CharByIdParams) {
       })
       .catch(err => {
         console.log(err);
+        setError(true)
       })
   }, [id, recipe])
 
@@ -52,6 +54,10 @@ export default function CharById({ params }: CharByIdParams) {
       passwordPrompt()
     }
 
+  }
+
+  if (error) {
+    return <h2 className="loading-error">Error 404! No data found!</h2>
   }
 
   return (

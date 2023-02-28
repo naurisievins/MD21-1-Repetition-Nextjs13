@@ -41,7 +41,7 @@ export default function Main() {
   }, [recipeSearchParams])
 
   if (loading) {
-    return <p>Loading...</p>
+    return <h2 className="loading-error">Loading...</h2>
   }
 
   return (

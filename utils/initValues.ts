@@ -1,3 +1,5 @@
+// Initial values
+
 import { RecipeSearchParams } from "types/types";
 
 export const recipeInit = {

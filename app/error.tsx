@@ -1,5 +1,5 @@
 'use client'
 
 export default function Error() {
-  return <p className="loading-error">Error...</p>
+  return <h2 className="loading-error">Error loading data...</h2>
 }

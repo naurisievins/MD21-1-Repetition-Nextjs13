@@ -1,3 +1,5 @@
+// Check if user has entered valid password for editing / adding or deliting recipes
+
 const authorized = () => {
   let key = sessionStorage.getItem("accesss_key");
 

@@ -1,3 +1,5 @@
+// Returns array of unique categories
+
 import axios from "axios";
 import { CategoryObject } from "types/types";
 

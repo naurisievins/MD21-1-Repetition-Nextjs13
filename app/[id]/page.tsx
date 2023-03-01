@@ -65,8 +65,8 @@ export default function CharById({ params }: CharByIdParams) {
       {recipe && (
         <div className={styles.recipe_full}>
           <div className={styles.top_menu}>
-            <Link href="" legacyBehavior>
-              <a>&#8656; Atpakaļ</a>
+            <Link href="" replace>
+              <button>&#8656; Atpakaļ</button>
             </Link>
             <div className={styles.top_menu_btn_container}>
               <button onClick={() => {

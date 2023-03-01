@@ -65,7 +65,7 @@ export default function CharById({ params }: CharByIdParams) {
       {recipe && (
         <div className={styles.recipe_full}>
           <div className={styles.top_menu}>
-            <Link href="/">
+            <Link href="">
               <button>&#8656; Atpakaļ</button>
             </Link>
             <div className={styles.top_menu_btn_container}>

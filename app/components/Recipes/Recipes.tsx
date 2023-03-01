@@ -11,7 +11,7 @@ export default function Recipes({ recipes }: RecipeProps) {
     <>
       {
         recipes.map((recipe: Recipe) => (
-          <Link href={`${recipe._id}`} key={recipe._id}>
+          <Link href='/[id]' as={`/${recipe._id}`} key={recipe._id}>
             <div className={styles.recipe}>
               <Image src={recipe.imgLink}
                 alt={recipe.name}
